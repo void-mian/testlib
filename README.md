@@ -1,4 +1,4 @@
-# Testlib
+# Testlib (modified checker for hustoj)
 
 ## Intro
 

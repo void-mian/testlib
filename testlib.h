@@ -44,7 +44,7 @@
 /* NOTE: This file contains testlib library for C++.
  *
  *   Check, using testlib running format:
- *     check.exe <Input_File> <Output_File> <Answer_File> [<Result_File> [-appes]],
+ *     check.exe <Input_File> <Answer_File> <Output_File> [<Result_File> [-appes]], // modified for hustoj
  *   If result file is specified it will contain results.
  *
  *   Validator, using testlib running format:                                          
@@ -4010,7 +4010,7 @@ NORETURN void __testlib_help() {
     std::fprintf(stderr, "\n");
 
     std::fprintf(stderr, "Program must be run with the following arguments: \n");
-    std::fprintf(stderr, "    <input-file> <output-file> <answer-file> [<report-file> [<-appes>]]\n\n");
+    std::fprintf(stderr, "    <input-file> <answer-file> <output-file>\n\n"); // modified for hustoj
 
     std::exit(FAIL_EXIT_CODE);
 }
@@ -4193,9 +4193,9 @@ void registerTestlibCmd(int argc, char *argv[]) {
     if (argc > 1 && !strcmp("--help", argv[1]))
         __testlib_help();
 
-    if (argc < 4 || argc > 6) {
+    if (argc < 4 || argc > 4) { // modified for hustoj
         quit(_fail, std::string("Program must be run with the following arguments: ") +
-                    std::string("<input-file> <output-file> <answer-file> [<report-file> [<-appes>]]") +
+                    std::string("<input-file> <answer-file> <output-file>") + // modified for hustoj
                     "\nUse \"--help\" to get help information");
     }
 
@@ -4220,14 +4220,14 @@ void registerTestlibCmd(int argc, char *argv[]) {
     }
 
     inf.init(argv[1], _input);
-    ouf.init(argv[2], _output);
-    ans.init(argv[3], _answer);
+    ouf.init(argv[3], _output); // modified for hustoj
+    ans.init(argv[2], _answer); // modified for hustoj
 }
 
 void registerTestlib(int argc, ...) {
     if (argc < 3 || argc > 5)
         quit(_fail, std::string("Program must be run with the following arguments: ") +
-                    "<input-file> <output-file> <answer-file> [<report-file> [<-appes>]]");
+                    "<input-file> <answer-file> <output-file>"); // modified for hustoj
 
     char **argv = new char *[argc + 1];
 
